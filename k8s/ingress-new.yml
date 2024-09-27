@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rollout-bluegreen-ingress
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: rollout.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rollout-bluegreen-active
+            port: 
+              number: 80
+  - host: preview.rollout.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: rollout-bluegreen-preview
+            port: 
+              number: 80
