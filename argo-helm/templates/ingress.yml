@@ -1,27 +1,26 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: rollout-bluegreen-ingress
+  name: ingress-wildcard-host
 spec:
-  ingressClassName: nginx
   rules:
-  - host: rollout.local
+  - host: springboot.local
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
             name: rollout-bluegreen-active
-            port: 
+            port:
               number: 80
-  - host: preview.rollout.local
+  - host: preview.springboot.local
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
             name: rollout-bluegreen-preview
-            port: 
+            port:
               number: 80
