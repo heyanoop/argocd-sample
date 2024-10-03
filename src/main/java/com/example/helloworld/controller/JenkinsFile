@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Git Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/heyanoop/springboot_cicd.git'
+                git branch: 'master', url: 'https://github.com/heyanoop/argocd-sample.git'
             }
         }
         
