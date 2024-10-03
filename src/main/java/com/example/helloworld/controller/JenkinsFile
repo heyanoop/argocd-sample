@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps {
-                git branch: 'master', url: 'https://github.com/your-repo/your-project.git'
+                git branch: 'master', url: 'https://github.com/heyanoop/argocd-sample.git'
             }
         }
         stage('Maven Build') {
@@ -99,10 +99,10 @@ pipeline {
             sh 'rm -rf helm-repo'
         }
         success {
-            echo 'Pipeline completed successfully!'
+            sh 'echo "Pipeline completed successfully!"'
         }
         failure {
-            echo 'Pipeline failed. Check the logs for more details.'
+            sh 'echo "Pipeline failed. Check the logs for more details."'
         }
     }
 
