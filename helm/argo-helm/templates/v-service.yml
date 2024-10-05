@@ -1,0 +1,31 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: rollout-bluegreen-vsvc
+spec:
+  hosts:
+  - "springboot.local"
+  - "preview.springboot.local"
+  gateways:
+  - rollout-bluegreen-gateway
+  http:
+  - match:
+    - uri:
+        prefix: "/"
+      authority:
+        exact: "springboot.local"
+    route:
+    - destination:
+        host: rollout-bluegreen-active
+        port:
+          number: 80
+  - match:
+    - uri:
+        prefix: "/"
+      authority:
+        exact: "preview.springboot.local"
+    route:
+    - destination:
+        host: rollout-bluegreen-preview
+        port:
+          number: 80
