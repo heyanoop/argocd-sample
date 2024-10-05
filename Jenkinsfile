@@ -27,7 +27,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        sh "mvn test"
+                        sh "mvn clean test"
                     } catch (Exception e) {
                         echo "Unit tests failed, but continuing with the pipeline..."
                     }
