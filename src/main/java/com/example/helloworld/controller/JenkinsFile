@@ -14,7 +14,7 @@ pipeline {
     stages {
         stage('git checkout') {
             steps {
-                git 'https://github.com/heyanoop/argocd-sample.git'
+                git branch: 'master', url: 'https://github.com/heyanoop/argocd-sample.git'
             }
         }
         stage('Maven Build') {
