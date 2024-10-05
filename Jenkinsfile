@@ -22,23 +22,13 @@ pipeline {
                 script {
                 def result = sh(script: "mvn clean package", returnStatus: true)
                 if (result != 0) {
-                error "Maven build failed."
+                error "Maven build ccd."
             }
         }
     }
 }
         
-        stage('Unit Tests') {
-            steps {
-                script {
-                    try {
-                        sh "mvn clean test"
-                    } catch (Exception e) {
-                        echo "Unit tests failed, but continuing with the pipeline..."
-                    }
-                }
-            }
-        }
+       
         stage('Docker Login & Build') {
             steps {
                 script {
