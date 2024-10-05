@@ -3,7 +3,6 @@ pipeline {
     tools {
         jdk 'jdk'
         maven 'maven'
-        docker 'docker'
     }
     environment {
         DOCKER_IMAGE = 'heyanoop/spring-boot-hello-world'
