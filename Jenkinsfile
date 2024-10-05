@@ -19,10 +19,26 @@ pipeline {
         }
         stage('Maven Build') {
             steps {
-                sh "mvn clean package"
+                script {
+                def result = sh(script: "mvn clean package", returnStatus: true)
+                if (result != 0) {
+                error "Maven build failed."
             }
         }
+    }
+}
         
+        stage('Unit Tests') {
+            steps {
+                script {
+                    try {
+                        sh "mvn clean test"
+                    } catch (Exception e) {
+                        echo "Unit tests failed, but continuing with the pipeline..."
+                    }
+                }
+            }
+        }
         stage('Docker Login & Build') {
             steps {
                 script {
